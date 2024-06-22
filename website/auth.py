@@ -51,10 +51,10 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
             flash('Account created Successfully',category='success')
-            login_user(user,remember=True)
-            return redirect(url_for('views.home',user=current_user))
+            login_user(new_user,remember=True)
+            return redirect(url_for('views.home'))
 
-    return render_template('signup.html')
+    return render_template('signup.html',user=current_user)
 
 @auth.route("/logout")
 @login_required
