@@ -1,0 +1,34 @@
+{% extends "index.html" %} {% block title %}Home{% endblock %} {% block content%}
+<form method="POST">
+  <h1>Compound</h1>
+  <div class="form-group">
+      <label for="text">Principal</label>
+      <input
+      type="text"
+      class="form-control"
+      id="principal"
+      name="principal"
+      value="100"/>
+  </div>    
+  <div class="form-group">
+      <label for="text">Interest</label>
+      <input
+      type="text"
+      class="form-control"
+      id="interest"
+      name="interest"
+      value="5"/>
+  </div>
+  <div class="form-group">
+    <label for="text">Time</label>
+    <input
+    type="text"
+    class="form-control"
+    id="time"
+    name="time"
+    value="5"/>
+</div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+<div>{{amount}}</div>    
+{% endblock %}
