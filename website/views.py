@@ -4,6 +4,7 @@ from .models import Note
 from . import db
 from .compound import compound_interest
 import json
+import requests
  
 views = Blueprint('views',__name__)
 
@@ -25,7 +26,6 @@ def home():
 def compound():
     amount=0
     if request.method=='POST':
-        print("viraj"+request.form.get('principal')+" "+request.form.get('interest')+" "+request.form.get('time'))
         try:
             principal=float(request.form.get('principal'))
             interest=float(request.form.get('interest'))
@@ -36,6 +36,18 @@ def compound():
             time=0    
         amount=compound_interest(principal=principal,interest=interest,time=time)
     return render_template('compound.html', user=current_user,amount=amount)
+@views.route("/stocks",methods=['GET','POST'])
+@login_required
+def stocks():
+    value=0
+    url="https://api.freeapi.app/api/v1/public/stocks/"
+    if request.method=='POST':
+        symbol=request.form.get('symbol')
+        response=requests.get(url+symbol)
+        data=response.json()
+        print(data["data"]["CurrentPrice"])
+        value=data["data"]["CurrentPrice"]
+    return render_template('stocks.html', user=current_user,value=value)
 @views.route('/delete-note',methods=['POST'])
 def delete_note():
     note =json.loads(request.data)

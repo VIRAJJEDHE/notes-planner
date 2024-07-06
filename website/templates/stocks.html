@@ -1,0 +1,16 @@
+{% extends "index.html" %} {% block title %}Home{% endblock %} {% block content%}
+<form method="POST">
+    <h1>Enter Symbol of the stock</h1>
+    <div class="form-group">
+        <label for="text">Symbol</label>
+        <input
+        type="text"
+        class="form-control"
+        id="symbol"
+        name="symbol"
+        value="INFY"/>
+    </div> 
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+<div>{{value}}</div>    
+{% endblock %}
